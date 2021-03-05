@@ -1,0 +1,10 @@
+23:42:46 **** Incremental Build of configuration Debug for project FlightControllerPeripheralTest ****
+make -j7 all 
+arm-none-eabi-size   FlightControllerPeripheralTest.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28348	    492	   8036	  36876	   900c	FlightControllerPeripheralTest.elf
+Finished building: default.size.stdout
+ 
+
+23:42:46 Build Finished. 0 errors, 0 warnings. (took 170ms)
+
