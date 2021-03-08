@@ -12,7 +12,7 @@ This repository provides an entire STM32Cube Workspace dedicated to ensuring per
 ## Description of Existing Projects
 - [**LED-Blink**](/LED-Blink/README.md): Tests the onboard LED and toggles it synchronously every 500ms.
 - [**LED-Blink-OSC**](/LED-Blink-OSC/README.md): Tests the onboard LED and the external onboard crystal oscillator.
-- [**USB-Serial-Print**](/USB-Serial-Print/README.md): Tests the serial print middleware capability of the micro-USB port.
+- [**USB-FS-Serial-Print**](/USB-FS-Serial-Print/README.md): Tests the serial print middleware capability of the micro-USB port.
 
 
 ## How to Open and Import Projects in Workspace

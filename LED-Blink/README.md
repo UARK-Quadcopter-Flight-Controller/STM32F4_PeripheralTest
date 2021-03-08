@@ -1,5 +1,4 @@
 # LED-Blink
-
 This project is a simple test program that blinks the onboard LED located on pin PB15. The .ioc configurations are as follows:
 
 ## Pinout & Configuration
