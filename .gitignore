@@ -1,4 +1,4 @@
 .metadata
 .settings
 *.o
-**/Build
+**/Debug
