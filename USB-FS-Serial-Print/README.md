@@ -54,13 +54,16 @@ you will then see a list of all of these. If you followed instructions from the 
 ```sh
 ls /dev/ | grep usbmodem
 ```
-If you do not see it, ensure that you ran the program with the run button (green play button) and not the debug button (green bug button). I spent a while scratching my head why it didn't appear initially because I was debugging. To add to the confusion, subsequent runs can use debug mode with no issues. Assuming that it now exists, we can use the `screen` command to "listen in" on the data stream like so: `screen <file location> <baud rate>`. Open a new terminal window/tab (⌘N or ⌘T on Mac, respectively) as this terminal will be dedicated to debug print messages from here on. Now type the following command to listen to the STM USB interface:
+If you do not see anything appear after the above command, refer to the troubleshooting section below. Assuming that it now exists, we can use the `screen` command to "listen in" on the data stream like so: `screen <file location> <baud rate>`. Open a new terminal window/tab (⌘N or ⌘T on Mac, respectively) as this terminal will be dedicated to debug print messages from here on. Now type the following command to listen to the STM USB interface:
 
 ```sh
 screen /dev/tty.usbmodem<press tab for auto-complete> 115200
 ```
 You should see numbers incrementing.
 ### Windows
-Windows is weird and is often temperamental when it comes to COM ports. To first ensure that the STM is being recognized by Windows, go to **Start > Device Manager**. There should be a section labeled "Ports (COM & LPT)" and a device under that heirarchy labeled "STMicroelectronices Virtual COM Port (COM#)" where # is the COM number being associated with the STM. Now, go download [PuTTY](https://www.putty.org/) or some other Windows terminal application and install it. (These instructions assume you have PuTTY but it should be a similar process). Open PuTTY and when prompted, choose the "serial connection" type and change it to whatever COM# your device is shown to be located at. Set the baud to 115200. If you get an error related to opening the port, disconnect the USB and plug it back in again. It has to do with the way Windows handles COM ports. 
+Windows is weird and is often temperamental when it comes to COM ports. To first ensure that the STM is being recognized by Windows, go to **Start > Device Manager**. There should be a section labeled "Ports (COM & LPT)" and a device under that heirarchy labeled "STMicroelectronices Virtual COM Port (COM#)" where # is the COM number being associated with the STM. If you do not see anything like this in the Device Manager, refer to the troubleshooting section below. Now, go download [PuTTY](https://www.putty.org/) or some other Windows terminal application and install it. (These instructions assume you have PuTTY but it should be a similar process). Open PuTTY and when prompted, choose the "serial connection" type and change it to whatever COM# your device is shown to be located at. Set the baud to 115200. If you get an error related to opening the port, disconnect the USB and plug it back in again. It has to do with the way Windows handles COM ports. 
 
 You should see numbers incrementing.
+
+## Troubleshooting the USB Device
+If you do not see it, ensure that you ran the program with the run button (green play button) and not the debug button (green bug button). I spent a while scratching my head why it didn't appear initially because I was debugging. To add to the confusion, subsequent runs can use debug mode with no issues. 
