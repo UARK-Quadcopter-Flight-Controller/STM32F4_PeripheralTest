@@ -2,3 +2,8 @@
 .settings
 *.o
 **/Debug
+
+# Computer Housekeeping files
+thumbds.db
+desktop.ini
+.DS_Store
