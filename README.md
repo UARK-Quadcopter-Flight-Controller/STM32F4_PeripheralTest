@@ -56,6 +56,6 @@ Using this as a pinout, the relevant pins for debugging are:
 *No other connections are used on the WIFI header for debugging. Please get these right and don't fry our production boards.*
 
 ### Development Board
-[Documentation needed...]
+[Documentation needed... @Dishoungh]
 
 
