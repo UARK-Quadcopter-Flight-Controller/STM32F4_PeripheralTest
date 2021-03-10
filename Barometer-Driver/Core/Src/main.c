@@ -104,6 +104,15 @@ int main(void)
   int32_t temperature;
   uint8_t data[256];
 
+  while (!bmp280_init(&bmp280, &bmp280.params))
+  {
+	  sprintf((char *)data, "BMP280 Initialization Failed\r\n\n");
+	  CDC_Transmit_FS(data, sizeof(data));
+	  memset(data, 0, sizeof(data));
+	  HAL_Delay(1000);
+  }
+  sprintf((char *)data, "BMP280 Found\r\n\n");
+
   // Create a buffer
 //  char txBuf[8];
 //  uint8_t count = 1;
