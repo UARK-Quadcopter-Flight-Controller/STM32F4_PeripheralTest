@@ -67,7 +67,7 @@ static bool read_register16(BMP280_HandleTypedef *dev, uint8_t addr, uint16_t *v
 
 	if ((tx == HAL_OK) && (rx == HAL_OK))
 	{
-		*value = (uint16_t) ((*rxBuf[0] << 8) | *rxBuf[1]);
+		*value = (uint16_t) ((*rxBuf[1] << 8) | *rxBuf[0]);
 		return true;
 	}
 	else
@@ -229,8 +229,8 @@ bool bmp280_read_float(BMP280_HandleTypedef *dev, float *temperature, float *pre
 	uint32_t fixed_pressure;
 	if (bmp280_read_fixed(dev, &fixed_temperature, &fixed_pressure))
 	{
-		*temperature = (float) fixed_temperature / 100;
-		*pressure = (float) fixed_pressure / 256;
+		*temperature = (float) fixed_temperature / 140;
+		*pressure = (float) fixed_pressure / 360;
 
 		/*Calculating Altitude from Pressure and Temperature*/
 		if (*pressure)

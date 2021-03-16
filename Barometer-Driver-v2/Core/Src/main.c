@@ -100,8 +100,7 @@ int main(void)
 
   bmp280_init_default_params(&bmp280.params);
   bmp280.spi = &hspi1;
-  uint32_t pressure;
-  int32_t temperature;
+  float pressure, temperature, altitude;
   uint8_t data[256];
 
   while (!bmp280_init(&bmp280, &bmp280.params))
@@ -128,14 +127,14 @@ int main(void)
 
 	while(!bmp280_is_measuring(&bmp280));
 
-	while(!bmp280_read_fixed(&bmp280, &temperature, &pressure))
+	while(!bmp280_read_float(&bmp280, &temperature, &pressure, &altitude))
 	{
 		sprintf((char *)data, "Temperature/Pressure Reading Failed\r\n\n");
 		CDC_Transmit_FS(data, sizeof(data));
 		memset(data, 0, sizeof(data));
 	}
 
-	sprintf((char *)data, "Pressure: %lu Pa \r\nTemperature: %ld C \r\n", pressure, temperature);
+	sprintf((char *)data, "Pressure: %.2f Pa \r\nTemperature: %.2f C \r\nAltitude: %.2f m\r\n\n", pressure, temperature, altitude);
 	CDC_Transmit_FS(data, sizeof(data));
 	memset(data, 0, sizeof(data));
 	HAL_Delay(1000);
