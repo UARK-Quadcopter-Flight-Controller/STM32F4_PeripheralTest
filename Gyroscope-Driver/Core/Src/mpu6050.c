@@ -31,6 +31,20 @@ static inline uint8_t mpu6050_init(MPU6050_HandleTypedef* dev)
 	if (HAL_I2C_Mem_Write(dev->i2c, dev->addr, SMPLRT_DIV_REG, 1, &data, 1, MPU6050_I2C_TIMEOUT) != HAL_OK)
 		return 0;
 
+	// Deassert I2C_BYBASS_EN, preventing the processor from accessing the aux I2C Bus
+	if (HAL_I2C_Mem_Read(dev->i2c, dev->addr, INT_PIN_CFG, 1, &data, 1, MPU6050_I2C_TIMEOUT) != HAL_OK)
+		return 0;
+	data &= 0xFD;
+	if (HAL_I2C_Mem_Write(dev->i2c, dev->addr, INT_PIN_CFG, 1, &data, 1, MPU6050_I2C_TIMEOUT) != HAL_OK)
+		return 0;
+
+	// Allow Gyro to Mag Communication (Assert Bit 5)
+	if (HAL_I2C_Mem_Read(dev->i2c, dev->addr, USER_CTRL_REG, 1, &data, 1, MPU6050_I2C_TIMEOUT) != HAL_OK)
+		return 0;
+	data |= 0x20;
+	if (HAL_I2C_Mem_Write(dev->i2c, dev->addr, USER_CTRL_REG, 1, &data, 1, MPU6050_I2C_TIMEOUT) != HAL_OK)
+		return 0;
+
 	// Set Accelerometer configuration in ACCEL_CONFIG Register
 	// XA_ST=0, YA_ST=0, ZA_ST=0, FS_SEL=0 -> +/- 2g
 	data = 0x00;
